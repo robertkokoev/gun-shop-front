@@ -4,6 +4,11 @@ import { AdminPanelComponent } from './admin-panel/admin-panel.component';
 
 const routes: Routes = [
   {
+    path: '',
+    pathMatch: 'full',
+    redirectTo: 'admin-panel'
+  },
+  {
     path: 'admin-panel',
     component: AdminPanelComponent,
     data: { title: 'Админка' }

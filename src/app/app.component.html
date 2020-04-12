@@ -2,17 +2,21 @@
   <nz-header>
     <div class="header-grid">
       <img class="logo" src="../assets/Logo.png" alt="">
-      <ul nz-menu nzTheme="dark" nzMode="horizontal">
-        <li nz-menu-item>nav 1</li>
-        <li nz-menu-item>nav 2</li>
-        <li nz-menu-item>nav 3</li>
+      <ul nz-menu nzTheme="dark" nzMode="horizontal" class="main-menu">
+        <li nz-menu-item><a routerLink="">Главная</a></li>
+        <li routerLink="cold-weapon" nz-menu-item>Каталог</li>
+        <li routerLink="firearm" nz-menu-item>Аксессуары</li>
+        <li routerLink="firearm" nz-menu-item>Патроны</li>
       </ul>
+      <div routerLink="admin-panel" class="login">
+        <nz-avatar nzIcon="user"></nz-avatar>
+        Войти
+      </div>
     </div>
   </nz-header>
 
   <nz-content>
     <div class="content">
-      Content
       <router-outlet></router-outlet>
     </div>
   </nz-content>

@@ -1,3 +1,72 @@
-<div>
+<form [formGroup]="weaponForm" class="form-grid" nz-form>
+  <nz-form-item>
+    <nz-form-label [nzSm]="6" [nzXs]="24" nzRequired nzFor="title">Название</nz-form-label>
+    <nz-form-control [nzSm]="14" [nzXs]="24" nzErrorTip="Название оружия обязательно">
+      <input formControlName="title" placeholder="Название" nz-input>
+    </nz-form-control>
+  </nz-form-item>
 
-</div>
+  <nz-form-item>
+    <nz-form-label [nzSm]="6" [nzXs]="24">Калибр</nz-form-label>
+    <nz-form-control [nzSm]="14" [nzXs]="24">
+      <nz-select formControlName="caliber" nzPlaceHolder="Калибр">
+        <nz-option nzValue="5,56" nzLabel="5,56"></nz-option>
+        <nz-option nzValue="7,62" nzLabel="7,62"></nz-option>
+        <nz-option nzValue="9" nzLabel="9"></nz-option>
+      </nz-select>
+    </nz-form-control>
+  </nz-form-item>
+
+  <nz-form-item>
+    <nz-form-label [nzSm]="6" [nzXs]="24">Страна</nz-form-label>
+    <nz-form-control [nzSm]="14" [nzXs]="24">
+      <input formControlName="country" placeholder="Страна" nz-input>
+    </nz-form-control>
+  </nz-form-item>
+
+  <nz-form-item>
+    <nz-form-label [nzSm]="6" [nzXs]="24">Компания</nz-form-label>
+    <nz-form-control [nzSm]="14" [nzXs]="24">
+      <input formControlName="company" placeholder="Компания" nz-input>
+    </nz-form-control>
+  </nz-form-item>
+
+  <nz-form-item>
+    <nz-form-label [nzSm]="6" [nzXs]="24">Тип оружия</nz-form-label>
+    <nz-form-control [nzSm]="14" [nzXs]="24">
+      <nz-select formControlName="gunType" nzPlaceHolder="Тип">
+        <nz-option nzValue="5,56" nzLabel="5,56"></nz-option>
+        <nz-option nzValue="7,62" nzLabel="7,62"></nz-option>
+        <nz-option nzValue="9" nzLabel="9"></nz-option>
+      </nz-select>
+    </nz-form-control>
+  </nz-form-item>
+
+  <nz-form-item>
+    <nz-form-label [nzSm]="6" [nzXs]="24">Длина</nz-form-label>
+    <nz-form-control [nzSm]="14" [nzXs]="24">
+      <input formControlName="length" placeholder="Длина" nz-input>
+    </nz-form-control>
+  </nz-form-item>
+
+  <nz-form-item>
+    <nz-form-label [nzSm]="6" [nzXs]="24">Ширина</nz-form-label>
+    <nz-form-control [nzSm]="14" [nzXs]="24">
+      <input formControlName="width" placeholder="Ширина" nz-input>
+    </nz-form-control>
+  </nz-form-item>
+
+  <nz-form-item>
+    <nz-form-label [nzSm]="6" [nzXs]="24">Высота</nz-form-label>
+    <nz-form-control [nzSm]="14" [nzXs]="24">
+      <input formControlName="height" placeholder="Высота" nz-input>
+    </nz-form-control>
+  </nz-form-item>
+
+  <nz-form-item>
+    <nz-form-label [nzSm]="6" [nzXs]="24">Начальная скорость пули</nz-form-label>
+    <nz-form-control [nzSm]="14" [nzXs]="24">
+      <input formControlName="bulletSpeed" placeholder="Скорость" nz-input>
+    </nz-form-control>
+  </nz-form-item>
+</form>

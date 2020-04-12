@@ -1,0 +1,10 @@
+.card {
+  display: grid;
+  justify-content: center;
+  height: 500px;
+  padding: 1rem;
+  border: 2px solid white;
+  border-radius: 10px;
+  background-color: var(--main-dark-color);
+  color: white;
+}
