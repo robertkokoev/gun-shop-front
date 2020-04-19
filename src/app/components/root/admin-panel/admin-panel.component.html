@@ -1,4 +1,5 @@
-<form [formGroup]="weaponForm" class="form-grid" nz-form>
+<h2 style="text-align: center">Добавление нового оружия</h2>
+<form [formGroup]="weaponForm" (ngSubmit)="saveGun()" class="form-grid" nz-form>
   <nz-form-item>
     <nz-form-label [nzSm]="6" [nzXs]="24" nzRequired nzFor="title">Название</nz-form-label>
     <nz-form-control [nzSm]="14" [nzXs]="24" nzErrorTip="Название оружия обязательно">
@@ -7,66 +8,89 @@
   </nz-form-item>
 
   <nz-form-item>
-    <nz-form-label [nzSm]="6" [nzXs]="24">Калибр</nz-form-label>
-    <nz-form-control [nzSm]="14" [nzXs]="24">
-      <nz-select formControlName="caliber" nzPlaceHolder="Калибр">
-        <nz-option nzValue="5,56" nzLabel="5,56"></nz-option>
-        <nz-option nzValue="7,62" nzLabel="7,62"></nz-option>
-        <nz-option nzValue="9" nzLabel="9"></nz-option>
+    <nz-form-label [nzSm]="6" [nzXs]="24" nzRequired nzFor="weaponType">Тип оружия</nz-form-label>
+    <nz-form-control [nzSm]="14" [nzXs]="24" nzErrorTip="Тип оружия обязателен">
+      <nz-select formControlName="weaponType" nzPlaceHolder="Тип">
+        <nz-option-group nzLabel="Огнестрельное">
+          <nz-option nzValue="pistol" nzLabel="Пистолет"></nz-option>
+          <nz-option nzValue="submachine-gun" nzLabel="Пистолет-пулемёт"></nz-option>
+          <nz-option nzValue="shotgun" nzLabel="Дробовик"></nz-option>
+          <nz-option nzValue="automatic-rifle" nzLabel="Автоматическая винтовка"></nz-option>
+          <nz-option nzValue="sniper-rifle" nzLabel="Снайперская винтовка"></nz-option>
+          <nz-option nzValue="machine-gun" nzLabel="Пулемет"></nz-option>
+        </nz-option-group>
+        <nz-option-group nzLabel="Холодное">
+          <nz-option nzValue="knife" nzLabel="Нож"></nz-option>
+          <nz-option nzValue="sword" nzLabel="Меч"></nz-option>
+          <nz-option nzValue="axe" nzLabel="Топор"></nz-option>
+        </nz-option-group>
+
       </nz-select>
     </nz-form-control>
   </nz-form-item>
 
   <nz-form-item>
-    <nz-form-label [nzSm]="6" [nzXs]="24">Страна</nz-form-label>
+    <nz-form-label [nzSm]="6" [nzXs]="24" nzRequired nzFor="length">Общая длина</nz-form-label>
+    <nz-form-control [nzSm]="14" [nzXs]="24" nzErrorTip="Длина оружия обязательна">
+      <nz-input-group nzSuffix="мм">
+        <input formControlName="length" nz-input placeholder="Длина"/>
+      </nz-input-group>
+    </nz-form-control>
+  </nz-form-item>
+
+  <nz-form-item>
+    <nz-form-label [nzSm]="6" [nzXs]="24">Калибр</nz-form-label>
     <nz-form-control [nzSm]="14" [nzXs]="24">
+      <input placeholder="Калибр"
+             nz-input
+             formControlName="caliber"
+             (ngModelChange)="onChange($event)"
+             [nzAutocomplete]="auto"/>
+      <nz-autocomplete [nzDataSource]="filteredCalibers" #auto></nz-autocomplete>
+    </nz-form-control>
+  </nz-form-item>
+
+  <nz-form-item>
+    <nz-form-label [nzSm]="6" [nzXs]="24" nzRequired nzFor="weight">Вес</nz-form-label>
+    <nz-form-control [nzSm]="14" [nzXs]="24" nzErrorTip="Вес обязателен">
+      <nz-input-group nzSuffix="гр">
+        <input formControlName="weight" placeholder="Вес" nz-input>
+      </nz-input-group>
+    </nz-form-control>
+  </nz-form-item>
+
+  <nz-form-item>
+    <nz-form-label [nzSm]="6" [nzXs]="24" nzRequired nzFor="country">Страна</nz-form-label>
+    <nz-form-control [nzSm]="14" [nzXs]="24" nzErrorTip="Страна обязательна">
       <input formControlName="country" placeholder="Страна" nz-input>
     </nz-form-control>
   </nz-form-item>
 
   <nz-form-item>
-    <nz-form-label [nzSm]="6" [nzXs]="24">Компания</nz-form-label>
-    <nz-form-control [nzSm]="14" [nzXs]="24">
-      <input formControlName="company" placeholder="Компания" nz-input>
-    </nz-form-control>
-  </nz-form-item>
-
-  <nz-form-item>
-    <nz-form-label [nzSm]="6" [nzXs]="24">Тип оружия</nz-form-label>
-    <nz-form-control [nzSm]="14" [nzXs]="24">
-      <nz-select formControlName="gunType" nzPlaceHolder="Тип">
-        <nz-option nzValue="5,56" nzLabel="5,56"></nz-option>
-        <nz-option nzValue="7,62" nzLabel="7,62"></nz-option>
-        <nz-option nzValue="9" nzLabel="9"></nz-option>
-      </nz-select>
-    </nz-form-control>
-  </nz-form-item>
-
-  <nz-form-item>
-    <nz-form-label [nzSm]="6" [nzXs]="24">Длина</nz-form-label>
-    <nz-form-control [nzSm]="14" [nzXs]="24">
-      <input formControlName="length" placeholder="Длина" nz-input>
-    </nz-form-control>
-  </nz-form-item>
-
-  <nz-form-item>
-    <nz-form-label [nzSm]="6" [nzXs]="24">Ширина</nz-form-label>
-    <nz-form-control [nzSm]="14" [nzXs]="24">
-      <input formControlName="width" placeholder="Ширина" nz-input>
-    </nz-form-control>
-  </nz-form-item>
-
-  <nz-form-item>
-    <nz-form-label [nzSm]="6" [nzXs]="24">Высота</nz-form-label>
-    <nz-form-control [nzSm]="14" [nzXs]="24">
-      <input formControlName="height" placeholder="Высота" nz-input>
+    <nz-form-label [nzSm]="6" [nzXs]="24" nzRequired nzFor="manufacturer">Производитель</nz-form-label>
+    <nz-form-control [nzSm]="14" [nzXs]="24" nzErrorTip="Производитель обязателен">
+      <input formControlName="manufacturer" placeholder="Производитель" nz-input>
     </nz-form-control>
   </nz-form-item>
 
   <nz-form-item>
     <nz-form-label [nzSm]="6" [nzXs]="24">Начальная скорость пули</nz-form-label>
     <nz-form-control [nzSm]="14" [nzXs]="24">
-      <input formControlName="bulletSpeed" placeholder="Скорость" nz-input>
+      <nz-input-group nzSuffix="м/с">
+        <input formControlName="bulletSpeed" placeholder="Скорость" nz-input>
+      </nz-input-group>
     </nz-form-control>
   </nz-form-item>
+
+  <div class="whole-length images">
+    <h3>Фото</h3>
+    <nz-upload nzListType="picture-card" nzMultiple>
+      <i nz-icon nzType="plus"></i>
+      <div class="ant-upload-text">Добавить</div>
+    </nz-upload>
+  </div>
+
+  <div class="whole-length save-button">
+    <button nzSize="large" type="submit" nz-button nzType="primary"><i nz-icon nzType="save"></i>Сохранить</button>
+  </div>
 </form>

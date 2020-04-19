@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { FormBuilder, Validators } from '@angular/forms';
+import { WeaponsService } from '../../shared/services/weapons.service';
 
 @Component({
   selector: 'app-admin-panel',
@@ -8,21 +9,34 @@ import { FormBuilder, Validators } from '@angular/forms';
 })
 export class AdminPanelComponent implements OnInit {
 
+  // calibers = Array<string>();
+  calibers = ['5.56мм', '7.62мм', '9мм'];
+  filteredCalibers = Array<string>();
+
   weaponForm = this.fb.group({
     title: this.fb.control(null, Validators.required),
-    caliber: this.fb.control(null, Validators.required),
     country: this.fb.control(null, Validators.required),
     company: this.fb.control(null, Validators.required),
-    gunType: this.fb.control(null, Validators.required),
+    weaponType: this.fb.control(null, Validators.required),
     length: this.fb.control(null, Validators.required),
-    width: this.fb.control(null, Validators.required),
-    height: this.fb.control(null, Validators.required),
-    bulletSpeed: this.fb.control(null, Validators.required),
+    weight: this.fb.control(null, Validators.required),
+    capacity: this.fb.control(null),
+    caliber: this.fb.control(null),
+    bulletSpeed: this.fb.control(null),
   });
 
-  constructor(private fb: FormBuilder) { }
+  constructor(private fb: FormBuilder, private weaponsService: WeaponsService) { }
 
   ngOnInit(): void {
+  }
+
+  onChange(value: string): void {
+    this.filteredCalibers = this.calibers.filter(option => option.toLowerCase().indexOf(value.toLowerCase()) !== -1);
+  }
+
+  saveGun(): void {
+    this.weaponsService.createWeapon(this.weaponForm.value)
+      .subscribe(data => console.log(data));
   }
 
 }
