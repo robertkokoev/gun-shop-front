@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { FormBuilder, Validators } from '@angular/forms';
 import { WeaponsService } from '../../shared/services/weapons.service';
+import { UploadFile } from 'ng-zorro-antd';
 
 @Component({
   selector: 'app-admin-panel',
@@ -16,16 +17,20 @@ export class AdminPanelComponent implements OnInit {
   weaponForm = this.fb.group({
     title: this.fb.control(null, Validators.required),
     country: this.fb.control(null, Validators.required),
-    company: this.fb.control(null, Validators.required),
+    manufacturer: this.fb.control(null, Validators.required),
     weaponType: this.fb.control(null, Validators.required),
     length: this.fb.control(null, Validators.required),
     weight: this.fb.control(null, Validators.required),
     capacity: this.fb.control(null),
     caliber: this.fb.control(null),
     bulletSpeed: this.fb.control(null),
+    images: this.fb.control([]),
   });
 
-  constructor(private fb: FormBuilder, private weaponsService: WeaponsService) { }
+  fileList: UploadFile[] = [];
+
+  constructor(private fb: FormBuilder, private weaponsService: WeaponsService) {
+  }
 
   ngOnInit(): void {
   }
@@ -35,8 +40,12 @@ export class AdminPanelComponent implements OnInit {
   }
 
   saveGun(): void {
-    this.weaponsService.createWeapon(this.weaponForm.value)
-      .subscribe(data => console.log(data));
+    this.weaponForm.controls.images.setValue(this.fileList.map(file => file.thumbUrl));
+
+    // this.weaponsService.createWeapon(this.weaponForm.value)
+    //   .subscribe(data => console.log(data));
+
+    console.log(this.weaponForm.controls.images.value);
   }
 
 }

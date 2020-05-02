@@ -7,16 +7,11 @@ const routes: Routes = [
     children: [
       {
         path: '',
-        pathMatch: 'full',
-        redirectTo: 'root',
+        loadChildren: () => import('./components/project/project.module').then(m => m.ProjectModule)
       },
       {
         path: 'root',
         loadChildren: () => import('./components/root/root.module').then(m => m.RootModule)
-      },
-      {
-        path: 'project',
-        loadChildren: () => import('./components/project/project.module').then(m => m.ProjectModule)
       }
     ]
   }

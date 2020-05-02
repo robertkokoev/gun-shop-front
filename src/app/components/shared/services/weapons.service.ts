@@ -1,6 +1,11 @@
 import { Injectable } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
 import { Observable } from 'rxjs';
+import { API_URL } from '../../../../environments/environment';
+
+export interface WeaponOutput extends WeaponInput {
+  id: number;
+}
 
 export interface WeaponInput {
   title: string;
@@ -20,6 +25,10 @@ export class WeaponsService {
   constructor(private http: HttpClient) { }
 
   createWeapon(weapon: WeaponInput): Observable<any> {
-    return this.http.post('https://localhost:44358/api/weapons', weapon);
+    return this.http.post(`${API_URL}/api/weapons`, weapon);
+  }
+
+  getAllWeapons(): Observable<WeaponOutput> {
+    return this.http.get<WeaponOutput>(`${API_URL}/api/weapons`);
   }
 }

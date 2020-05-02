@@ -4,3 +4,8 @@
 :root {
   --main-dark-color: #001529;
 }
+
+body {
+  font-family: 'Montserrat', sans-serif;
+  font-size: 16px;
+}

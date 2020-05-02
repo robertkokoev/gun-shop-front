@@ -60,6 +60,13 @@
   </nz-form-item>
 
   <nz-form-item>
+    <nz-form-label [nzSm]="6" [nzXs]="24" nzRequired nzFor="capacity">Ёмкость магазина</nz-form-label>
+    <nz-form-control [nzSm]="14" [nzXs]="24" nzErrorTip="Ёмкость магазина обязательна">
+      <input formControlName="capacity" placeholder="Ёмкость магазина" nz-input>
+    </nz-form-control>
+  </nz-form-item>
+
+  <nz-form-item>
     <nz-form-label [nzSm]="6" [nzXs]="24" nzRequired nzFor="country">Страна</nz-form-label>
     <nz-form-control [nzSm]="14" [nzXs]="24" nzErrorTip="Страна обязательна">
       <input formControlName="country" placeholder="Страна" nz-input>
@@ -74,23 +81,32 @@
   </nz-form-item>
 
   <nz-form-item>
-    <nz-form-label [nzSm]="6" [nzXs]="24">Начальная скорость пули</nz-form-label>
+    <nz-form-label [nzSm]="6" [nzXs]="24">Скорость пули</nz-form-label>
     <nz-form-control [nzSm]="14" [nzXs]="24">
       <nz-input-group nzSuffix="м/с">
-        <input formControlName="bulletSpeed" placeholder="Скорость" nz-input>
+        <input formControlName="bulletSpeed" placeholder="Начальная скорость пули" nz-input>
       </nz-input-group>
     </nz-form-control>
   </nz-form-item>
 
   <div class="whole-length images">
     <h3>Фото</h3>
-    <nz-upload nzListType="picture-card" nzMultiple>
-      <i nz-icon nzType="plus"></i>
-      <div class="ant-upload-text">Добавить</div>
+    <nz-upload nzAction="https://www.mocky.io/v2/5cc8019d300000980a055e76"
+               [(nzFileList)]="fileList"
+               nzFileType="image/png"
+               nzListType="picture"
+               nzMultiple>
+      <button nz-button nzType="primary" nzSize="large">
+        <i nz-icon nzType="plus"></i>
+        Добавить (.png)
+      </button>
     </nz-upload>
   </div>
 
   <div class="whole-length save-button">
-    <button nzSize="large" type="submit" nz-button nzType="primary"><i nz-icon nzType="save"></i>Сохранить</button>
+    <button nzSize="large" type="submit" nz-button nzType="primary">
+      <i nz-icon nzType="save"></i>
+      Сохранить
+    </button>
   </div>
 </form>

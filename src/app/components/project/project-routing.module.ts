@@ -1,12 +1,32 @@
-import { NgModule } from '@angular/core';
-import { RouterModule, Routes } from '@angular/router';
-import { AdminPanelComponent } from '../root/admin-panel/admin-panel.component';
+import { Injectable, NgModule } from '@angular/core';
+import { ActivatedRouteSnapshot, Resolve, RouterModule, Routes } from '@angular/router';
+import { MainPageComponent } from './main-page/main-page.component';
+import { WeaponOutput, WeaponsService } from '../shared/services/weapons.service';
+import { Observable } from 'rxjs';
+
+@Injectable({ providedIn: 'root' })
+export class AllWeaponsResolver implements Resolve<WeaponOutput> {
+
+  constructor(private weaponsService: WeaponsService) { }
+
+  resolve(route: ActivatedRouteSnapshot): Observable<WeaponOutput> {
+    return this.weaponsService.getAllWeapons();
+  }
+}
 
 const routes: Routes = [
-  // {
-  //   path: '',
-  //   component:
-  // }
+  {
+    path: '',
+    pathMatch: 'full',
+    redirectTo: 'main'
+  },
+  {
+    path: 'main',
+    component: MainPageComponent,
+    resolve: {
+      weapons: AllWeaponsResolver
+    }
+  }
 ];
 
 @NgModule({

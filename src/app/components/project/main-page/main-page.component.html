@@ -1,0 +1,25 @@
+<h1 class="subtitle">Акутальные предоложения</h1>
+<div class="main-grid">
+  <div *ngFor="let weapon of weapons" class="card">
+    <div class="title">{{ weapon.title }}</div>
+
+    <img class="image" src="https://avatars.mds.yandex.net/get-pdb/1639477/8f98d89b-a330-4abd-ab10-b2e4b67764f9/s1200?webp=false">
+<!--    <div class="type">{{ weapon.type }}</div>-->
+    <div class="type">Автоматическая винтовка</div>
+
+    <div class="info">
+      Калибр: <span>{{ weapon.caliber }}</span> <br>
+      Страна: <span>{{ weapon.country }}</span> <br>
+<!--      Производитель: {{ weapon.manufacturer }}-->
+      Производитель: <span>Концерн Калашникова</span>
+      <div class="price">500$</div>
+    </div>
+
+    <button nz-button nzSize="large" nzBlock nzType="default">
+      <i nz-icon nzType="shopping-cart" nzTheme="outline"></i>
+      В корзину
+    </button>
+  </div>
+
+
+</div>
