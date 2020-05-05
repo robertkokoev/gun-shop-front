@@ -1,7 +1,20 @@
 <div *ngFor="let item of items" class="card">
-  <span class="title"></span>
-  <img src="" alt="">
-  <div class="description"></div>
-  <span class="price"></span>
-  <button>Купить</button>
+  <div class="title">{{ item.title }}</div>
+
+  <img class="image" src="https://avatars.mds.yandex.net/get-pdb/1639477/8f98d89b-a330-4abd-ab10-b2e4b67764f9/s1200?webp=false">
+  <!--    <div class="type">{{ item.type }}</div>-->
+  <div class="type">Автоматическая винтовка</div>
+
+  <div class="info">
+    Калибр: <span>{{ item.caliber }}</span> <br>
+    Страна: <span>{{ item.country }}</span> <br>
+    <!--      Производитель: {{ item.manufacturer }}-->
+    Производитель: <span>Концерн Калашникова</span>
+    <div class="price">500$</div>
+  </div>
+
+  <button nz-button nzSize="large" nzBlock nzType="default">
+    <i nz-icon nzType="shopping-cart" nzTheme="outline"></i>
+    В корзину
+  </button>
 </div>

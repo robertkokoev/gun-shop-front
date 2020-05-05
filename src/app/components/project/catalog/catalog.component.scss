@@ -1,0 +1,43 @@
+:host ::ng-deep {
+  .ant-menu-sub.ant-menu-inline {
+    padding: 0 1rem;
+  }
+}
+
+input[type='number'] {
+  -moz-appearance:textfield;
+}
+
+input::-webkit-outer-spin-button,
+input::-webkit-inner-spin-button {
+  -webkit-appearance: none;
+}
+
+.type-grid {
+  display: grid;
+  grid-gap: 5px;
+}
+
+.btn-group {
+  display: grid;
+  grid-auto-flow: column;
+  grid-gap: 5px;
+  align-items: center;
+}
+
+.types-grid {
+  display: grid;
+  grid-gap: 10px;
+}
+
+nz-content {
+  padding: 20px;
+}
+
+.spin-wrapper {
+  background-color: rgba(0, 21, 41, 0.2);
+  display: grid;
+  height: 100%;
+  align-items: center;
+  justify-content: center;
+}

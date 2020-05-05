@@ -3,13 +3,14 @@ import { ActivatedRouteSnapshot, Resolve, RouterModule, Routes } from '@angular/
 import { MainPageComponent } from './main-page/main-page.component';
 import { WeaponOutput, WeaponsService } from '../shared/services/weapons.service';
 import { Observable } from 'rxjs';
+import { CatalogComponent } from './catalog/catalog.component';
 
 @Injectable({ providedIn: 'root' })
-export class AllWeaponsResolver implements Resolve<WeaponOutput> {
+export class AllWeaponsResolver implements Resolve<WeaponOutput[]> {
 
   constructor(private weaponsService: WeaponsService) { }
 
-  resolve(route: ActivatedRouteSnapshot): Observable<WeaponOutput> {
+  resolve(route: ActivatedRouteSnapshot): Observable<WeaponOutput[]> {
     return this.weaponsService.getAllWeapons();
   }
 }
@@ -26,6 +27,10 @@ const routes: Routes = [
     resolve: {
       weapons: AllWeaponsResolver
     }
+  },
+  {
+    path: 'catalog',
+    component: CatalogComponent
   }
 ];
 

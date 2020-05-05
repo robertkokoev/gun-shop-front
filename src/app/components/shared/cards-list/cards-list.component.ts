@@ -1,4 +1,5 @@
 import { Component, Input, OnInit } from '@angular/core';
+import { WeaponOutput } from '../services/weapons.service';
 
 @Component({
   selector: 'app-cards-list',
@@ -7,7 +8,7 @@ import { Component, Input, OnInit } from '@angular/core';
 })
 export class CardsListComponent implements OnInit {
 
-  @Input() items = Array<any>();
+  @Input() items = Array<WeaponOutput>();
 
   constructor() { }
 

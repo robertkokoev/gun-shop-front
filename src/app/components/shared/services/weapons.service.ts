@@ -28,7 +28,7 @@ export class WeaponsService {
     return this.http.post(`${API_URL}/api/weapons`, weapon);
   }
 
-  getAllWeapons(): Observable<WeaponOutput> {
-    return this.http.get<WeaponOutput>(`${API_URL}/api/weapons`);
+  getAllWeapons(): Observable<WeaponOutput[]> {
+    return this.http.get<WeaponOutput[]>(`${API_URL}/api/weapons`);
   }
 }
