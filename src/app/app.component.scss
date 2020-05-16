@@ -1,5 +1,11 @@
 nz-layout {
   min-height: 100vh;
+  background: url('/../assets/background.png');
+  box-shadow: 1000px 1000px 1000px rgba(0, 0, 0, 0.4) inset;
+
+  nz-layout {
+    background: inherit;
+  }
 }
 
 nz-header,

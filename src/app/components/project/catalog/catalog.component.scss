@@ -13,6 +13,10 @@ input::-webkit-inner-spin-button {
   -webkit-appearance: none;
 }
 
+.ant-layout {
+  background: inherit;
+}
+
 .checkboxes-grid {
   display: grid;
   grid-gap: 10px;
