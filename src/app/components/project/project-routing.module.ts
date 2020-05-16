@@ -5,6 +5,7 @@ import { WeaponOutput, WeaponsService } from '../shared/services/weapons.service
 import { Observable } from 'rxjs';
 import { CatalogComponent } from './catalog/catalog.component';
 import { AllManufacturersResolver } from '../root/root-routing.module';
+import { AboutComponent } from './about/about.component';
 
 @Injectable({ providedIn: 'root' })
 export class AllWeaponsResolver implements Resolve<WeaponOutput[]> {
@@ -37,6 +38,10 @@ const routes: Routes = [
       manufacturers: AllManufacturersResolver
     },
     data: { title: 'Каталог' }
+  },
+  {
+    path: 'about',
+    component: AboutComponent
   }
 ];
 

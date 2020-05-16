@@ -6,9 +6,10 @@ import { NgZorroAntdModule, NzButtonModule, NzIconModule } from 'ng-zorro-antd';
 import { CatalogComponent } from './catalog/catalog.component';
 import { SharedModule } from '../shared/shared.module';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
+import { AboutComponent } from './about/about.component';
 
 @NgModule({
-  declarations: [MainPageComponent, CatalogComponent],
+  declarations: [MainPageComponent, CatalogComponent, AboutComponent],
   exports: [],
   imports: [
     ProjectRoutingModule,

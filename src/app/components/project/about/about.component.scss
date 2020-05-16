@@ -1,0 +1,25 @@
+.grid {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  //grid-gap: 20px;
+  padding: 0 200px;
+  align-items: center;
+
+  img {
+    max-width: 100%;
+  }
+}
+
+.text {
+  padding: 20px;
+
+  h1 {
+    text-align: center;
+    color: white;
+  }
+
+  p {
+    font-size: 24px;
+    color: white;
+  }
+}
