@@ -1,0 +1,21 @@
+<h2 style="text-align: center">Добавление производителя</h2>
+<form [formGroup]="form" (ngSubmit)="createManufacturer()" nz-form class="form-grid">
+  <nz-form-item>
+    <nz-form-label nzRequired nzFor="title">Имя производителя</nz-form-label>
+    <nz-form-control nzErrorTip="Имя производителя обязательно">
+      <input formControlName="title" placeholder="Имя" nz-input>
+    </nz-form-control>
+  </nz-form-item>
+
+  <nz-form-item>
+    <nz-form-label nzRequired nzFor="country">Страна производителя</nz-form-label>
+    <nz-form-control nzErrorTip="Страна производителя обязательна">
+      <input formControlName="country" placeholder="Страна" nz-input>
+    </nz-form-control>
+  </nz-form-item>
+
+  <button [disabled]="form.invalid" nzType="primary" (click)="createManufacturer()" nz-button>
+    <i nz-icon nzType="save"></i>
+    Сохранить
+  </button>
+</form>

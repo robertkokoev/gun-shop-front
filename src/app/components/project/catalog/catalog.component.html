@@ -4,37 +4,38 @@
       <li formGroupName="price" nzOpen nz-submenu nzTitle="Цена">
         <div class="btn-group">
           <input formControlName="minPrice"
-                 max="100000"
+                 max="50000"
                  min="0"
                  nz-input
                  placeholder="от"
                  type="number">
           <span>-</span>
           <input formControlName="maxPrice"
-                 max="100000"
+                 max="50000"
                  min="0"
                  nz-input
                  placeholder="до"
                  type="number">
         </div>
-        <!--        <nz-slider formControlName=""-->
-        <!--                   class="padding"-->
-        <!--                   nzMax="100000"-->
-        <!--                   nzRange-->
-        <!--                   nzStep="100">-->
-        <!--        </nz-slider>-->
       </li>
       <li nzOpen nz-submenu nzTitle="Тип">
         <nz-checkbox-group [(ngModel)]="types"
-                           (ngModelChange)="toggleTypes($event)"
+                           (ngModelChange)="toggleTypes($event, 'types')"
                            [ngModelOptions]="{ standalone: true }"
-                           class="type-grid">
+                           class="checkboxes-grid">
         </nz-checkbox-group>
       </li>
       <li nz-submenu nzTitle="Производитель">
-
+        <nz-checkbox-group [(ngModel)]="manufacturers"
+                           (ngModelChange)="toggleTypes($event, 'manufacturers')"
+                           [ngModelOptions]="{ standalone: true }"
+                           class="checkboxes-grid">
+        </nz-checkbox-group>
       </li>
     </ul>
+    <div class="filter-button">
+      <button (click)="filter()" nzSize="large" nz-button>Применить фильтр</button>
+    </div>
   </nz-sider>
   <nz-content>
     <app-cards-list class="cards" *ngIf="(weapons$ | async) as weapons else loader" [items]="weapons"></app-cards-list>

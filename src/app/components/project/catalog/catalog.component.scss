@@ -13,9 +13,9 @@ input::-webkit-inner-spin-button {
   -webkit-appearance: none;
 }
 
-.type-grid {
+.checkboxes-grid {
   display: grid;
-  grid-gap: 5px;
+  grid-gap: 10px;
 }
 
 .btn-group {
@@ -39,5 +39,10 @@ nz-content {
   display: grid;
   height: 100%;
   align-items: center;
+  justify-content: center;
+}
+
+.filter-button {
+  display: grid;
   justify-content: center;
 }

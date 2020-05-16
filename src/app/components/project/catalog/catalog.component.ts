@@ -3,7 +3,13 @@ import { FormBuilder, FormGroup } from '@angular/forms';
 import { WeaponOutput, WeaponsService } from '../../shared/services/weapons.service';
 import { Observable } from 'rxjs';
 import { delay } from 'rxjs/operators';
-import { NgxSpinnerService } from 'ngx-spinner';
+import { ActivatedRoute } from '@angular/router';
+
+interface CheckboxItem {
+  label: string ;
+  value: number | string;
+  checked?: boolean;
+}
 
 @Component({
   selector: 'app-catalog',
@@ -15,11 +21,12 @@ export class CatalogComponent implements OnInit {
   private _filterForm = this.fb.group({
     price: this.fb.group({
       minPrice: this.fb.control(0),
-      maxPrice: this.fb.control(100000)
+      maxPrice: this.fb.control(50000)
     }),
-    types: this.fb.control([])
+    types: this.fb.control([]),
+    manufacturers: this.fb.control([])
   });
-  private _types = [
+  private _types: CheckboxItem[] = [
     { value: 'pistol', label: 'Пистолет' },
     { value: 'submachine-gun', label: 'Пистолет-пулемёт' },
     { value: 'shotgun', label: 'Дробовик' },
@@ -31,20 +38,17 @@ export class CatalogComponent implements OnInit {
     { value: 'axe', label: 'Топор' },
   ];
   private _weapons$ = this.weaponsService.getAllWeapons().pipe(delay(5000));
+  private _manufacturers = Array<CheckboxItem>();
 
   get filterForm(): FormGroup {
     return this._filterForm;
   }
 
-  set filterForm(value: FormGroup) {
-    this._filterForm = value;
-  }
-
-  get types(): { label: string; value: string }[] {
+  get types(): CheckboxItem[] {
     return this._types;
   }
 
-  set types(value: { label: string; value: string }[]) {
+  set types(value: CheckboxItem[]) {
     this._types = value;
   }
 
@@ -52,15 +56,34 @@ export class CatalogComponent implements OnInit {
     return this._weapons$;
   }
 
-  constructor(private spinner: NgxSpinnerService, private fb: FormBuilder, private weaponsService: WeaponsService) { }
+  get manufacturers(): CheckboxItem[] {
+    return this._manufacturers;
+  }
+
+  set manufacturers(value: CheckboxItem[]) {
+    this._manufacturers = value;
+  }
+
+  constructor(
+    private fb: FormBuilder,
+    private weaponsService: WeaponsService,
+    private route: ActivatedRoute
+  ) { }
 
   ngOnInit(): void {
-    this.spinner.show();
+    this.route.data.subscribe(data => {
+      this._manufacturers = data.manufacturers.map(item => ({ label: item.title, value: item.id }));
+    });
   }
 
-  toggleTypes(checked: { label: string; value: string; checked?: boolean }[]): void {
-    this.filterForm.controls.types.setValue(checked.filter(item => item.checked).map(item => item.value));
-    console.log(this.filterForm.controls.types.value);
+  toggleTypes(items: CheckboxItem[], controlName: 'types' | 'manufacturers'): void {
+    const checkedItems = items.filter(item => item.checked).map(item => item.value);
+
+    this.filterForm.controls[controlName].setValue(checkedItems);
+    console.log(this.filterForm.controls[controlName].value);
   }
 
+  filter(): void {
+    console.log(this.filterForm.value);
+  }
 }
