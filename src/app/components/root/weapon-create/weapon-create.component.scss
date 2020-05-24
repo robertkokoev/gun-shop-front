@@ -1,3 +1,12 @@
+input[type='number'] {
+  -moz-appearance:textfield;
+}
+
+input::-webkit-outer-spin-button,
+input::-webkit-inner-spin-button {
+  -webkit-appearance: none;
+}
+
 .form-grid {
   display: grid;
   grid-template-columns: 1fr 1fr;
@@ -29,11 +38,15 @@ nz-divider {
   grid-column: 1 / -1;
 }
 
-.images {
+.justify-center {
   justify-self: center;
 }
 
 .save-button {
   display: grid;
   justify-content: end;
+}
+
+.price {
+  min-width: 300px;
 }

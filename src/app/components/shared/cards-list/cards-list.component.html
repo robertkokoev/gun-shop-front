@@ -2,15 +2,14 @@
   <div class="title">{{ item.title }}</div>
 
   <img class="image" src="https://avatars.mds.yandex.net/get-pdb/1639477/8f98d89b-a330-4abd-ab10-b2e4b67764f9/s1200?webp=false">
-  <!--    <div class="type">{{ item.type }}</div>-->
-  <div class="type">Автоматическая винтовка</div>
+  <div class="type">{{ item.type }}</div>
 
   <div class="info">
     Калибр: <span>{{ item.caliber }}</span> <br>
     Страна: <span>{{ item.country }}</span> <br>
     <!--      Производитель: {{ item.manufacturer }}-->
     Производитель: <span>Концерн Калашникова</span>
-    <div class="price">500$</div>
+    <div class="price">{{ item.price }}$</div>
   </div>
 
   <button nz-button nzSize="large" nzBlock nzType="default">

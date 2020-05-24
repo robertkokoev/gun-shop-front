@@ -24,7 +24,7 @@ export class CatalogComponent implements OnInit {
       maxPrice: this.fb.control(50000)
     }),
     types: this.fb.control([]),
-    manufacturers: this.fb.control([])
+    manufacturerIds: this.fb.control([])
   });
   private _types: CheckboxItem[] = [
     { value: 'pistol', label: 'Пистолет' },
@@ -76,7 +76,7 @@ export class CatalogComponent implements OnInit {
     });
   }
 
-  toggleTypes(items: CheckboxItem[], controlName: 'types' | 'manufacturers'): void {
+  toggleTypes(items: CheckboxItem[], controlName: 'types' | 'manufacturerIds'): void {
     const checkedItems = items.filter(item => item.checked).map(item => item.value);
 
     this.filterForm.controls[controlName].setValue(checkedItems);
@@ -84,6 +84,7 @@ export class CatalogComponent implements OnInit {
   }
 
   filter(): void {
+    this._weapons$ = this.weaponsService.getAllWeapons(this.filterForm.value);
     console.log(this.filterForm.value);
   }
 }

@@ -5,6 +5,7 @@ import { AdminPanelComponent } from './admin-panel/admin-panel.component';
 import { ManufacturerCreateComponent } from './manufacturer-create/manufacturer-create.component';
 import { ManufacturerOutput, ManufacturersService } from '../shared/services/manufacturers.service';
 import { Observable } from 'rxjs';
+import { Caliber, CalibersService } from '../shared/services/calibers.service';
 
 @Injectable({ providedIn: 'root' })
 export class AllManufacturersResolver implements Resolve<ManufacturerOutput[]>{
@@ -13,6 +14,17 @@ export class AllManufacturersResolver implements Resolve<ManufacturerOutput[]>{
 
   resolve(): Observable<ManufacturerOutput[]> {
     return this.manufacturersService.getAllManufacturers();
+  }
+
+}
+
+@Injectable({ providedIn: 'root' })
+export class AllCalibersResolver implements Resolve<Caliber[]> {
+
+  constructor(private calibersService: CalibersService) { }
+
+  resolve(): Observable<Caliber[]> {
+    return this.calibersService.getCalibers();
   }
 
 }
@@ -28,7 +40,8 @@ const routes: Routes = [
     component: AdminPanelComponent,
     data: { title: 'Админка' },
     resolve: {
-      manufacturers: AllManufacturersResolver
+      manufacturers: AllManufacturersResolver,
+      calibers: AllCalibersResolver
     },
     children: [
       {

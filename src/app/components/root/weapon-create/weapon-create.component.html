@@ -8,9 +8,9 @@
   </nz-form-item>
 
   <nz-form-item>
-    <nz-form-label [nzSm]="6" [nzXs]="24" nzRequired nzFor="weaponType">Тип оружия</nz-form-label>
+    <nz-form-label [nzSm]="6" [nzXs]="24" nzRequired nzFor="type">Тип оружия</nz-form-label>
     <nz-form-control [nzSm]="14" [nzXs]="24" nzErrorTip="Тип оружия обязателен">
-      <nz-select formControlName="weaponType" nzPlaceHolder="Тип">
+      <nz-select formControlName="type" nzPlaceHolder="Тип">
         <nz-option-group nzLabel="Огнестрельное">
           <nz-option nzValue="pistol" nzLabel="Пистолет"></nz-option>
           <nz-option nzValue="submachine-gun" nzLabel="Пистолет-пулемёт"></nz-option>
@@ -33,7 +33,7 @@
     <nz-form-label [nzSm]="6" [nzXs]="24" nzRequired nzFor="length">Общая длина</nz-form-label>
     <nz-form-control [nzSm]="14" [nzXs]="24" nzErrorTip="Длина оружия обязательна">
       <nz-input-group nzSuffix="мм">
-        <input formControlName="length" nz-input placeholder="Длина"/>
+        <input formControlName="length" nz-input placeholder="Длина" type="number"/>
       </nz-input-group>
     </nz-form-control>
   </nz-form-item>
@@ -54,7 +54,7 @@
     <nz-form-label [nzSm]="6" [nzXs]="24" nzRequired nzFor="weight">Вес</nz-form-label>
     <nz-form-control [nzSm]="14" [nzXs]="24" nzErrorTip="Вес обязателен">
       <nz-input-group nzSuffix="гр">
-        <input formControlName="weight" placeholder="Вес" nz-input>
+        <input formControlName="weight" nz-input placeholder="Вес" type="number">
       </nz-input-group>
     </nz-form-control>
   </nz-form-item>
@@ -62,26 +62,19 @@
   <nz-form-item>
     <nz-form-label [nzSm]="6" [nzXs]="24">Ёмкость магазина</nz-form-label>
     <nz-form-control [nzSm]="14" [nzXs]="24">
-      <input formControlName="capacity" placeholder="Ёмкость магазина" nz-input>
+      <input formControlName="capacity" nz-input placeholder="Ёмкость магазина" type="number">
     </nz-form-control>
   </nz-form-item>
 
   <nz-form-item>
-    <nz-form-label [nzSm]="6" [nzXs]="24" nzRequired nzFor="manufacturer">Производитель</nz-form-label>
+    <nz-form-label [nzSm]="6" [nzXs]="24" nzRequired nzFor="manufacturerId">Производитель</nz-form-label>
     <nz-form-control [nzSm]="14" [nzXs]="24" nzErrorTip="Производитель обязателен">
-      <nz-select formControlName="manufacturer" nzPlaceHolder="Производитель">
+      <nz-select formControlName="manufacturerId" nzPlaceHolder="Производитель">
         <nz-option *ngFor="let manufacturer of manufacturers"
                    [nzValue]="manufacturer.id"
-                   [nzLabel]="manufacturer.title">
+                   [nzLabel]="manufacturer.title + ' - ' + manufacturer.country">
         </nz-option>
       </nz-select>
-    </nz-form-control>
-  </nz-form-item>
-
-  <nz-form-item>
-    <nz-form-label [nzSm]="6" [nzXs]="24" nzRequired nzFor="country">Страна</nz-form-label>
-    <nz-form-control [nzSm]="14" [nzXs]="24" nzErrorTip="Страна обязательна">
-      <input disabled formControlName="country" nz-input placeholder="Страна">
     </nz-form-control>
   </nz-form-item>
 
@@ -89,24 +82,42 @@
     <nz-form-label [nzSm]="6" [nzXs]="24">Скорость пули</nz-form-label>
     <nz-form-control [nzSm]="14" [nzXs]="24">
       <nz-input-group nzSuffix="м/с">
-        <input formControlName="bulletSpeed" placeholder="Начальная скорость пули" nz-input>
+        <input formControlName="bulletSpeed" nz-input placeholder="Начальная скорость пули" type="number">
       </nz-input-group>
     </nz-form-control>
   </nz-form-item>
 
-  <div class="whole-length images">
-    <h3>Фото</h3>
-    <nz-upload nzAction="https://www.mocky.io/v2/5cc8019d300000980a055e76"
-               [(nzFileList)]="fileList"
-               nzFileType="image/png"
-               nzListType="picture"
-               nzMultiple>
-      <button nz-button nzType="primary" nzSize="large">
-        <i nz-icon nzType="plus"></i>
-        Добавить (.png)
-      </button>
-    </nz-upload>
+  <div class="whole-length justify-center">
+    <div class="price">
+      <nz-form-item>
+        <nz-form-label [nzSm]="6" [nzXs]="24" nzRequired nzFor="price">Цена</nz-form-label>
+        <nz-form-control [nzSm]="14" [nzXs]="24" nzErrorTip="Цена обязательна">
+          <nz-input-group nzSuffix="$">
+            <input formControlName="price"
+                   max="50000"
+                   min="1"
+                   nz-input
+                   placeholder="Цена товара"
+                   type="number">
+          </nz-input-group>
+        </nz-form-control>
+      </nz-form-item>
+    </div>
   </div>
+
+<!--  <div class="whole-length justify-center">-->
+<!--    <h3>Фото</h3>-->
+<!--    <nz-upload nzAction="https://www.mocky.io/v2/5cc8019d300000980a055e76"-->
+<!--               [(nzFileList)]="fileList"-->
+<!--               nzFileType="image/png"-->
+<!--               nzListType="picture"-->
+<!--               nzMultiple>-->
+<!--      <button nz-button nzType="primary" nzSize="large">-->
+<!--        <i nz-icon nzType="plus"></i>-->
+<!--        Добавить (.png)-->
+<!--      </button>-->
+<!--    </nz-upload>-->
+<!--  </div>-->
 
   <div class="whole-length save-button">
     <button nzSize="large" type="submit" nz-button nzType="primary">

@@ -12,22 +12,21 @@ import { ManufacturerOutput } from '../../shared/services/manufacturers.service'
 })
 export class WeaponCreateComponent implements OnInit {
 
-  // calibers = Array<string>();
-  calibers = ['5.56мм', '7.62мм', '9мм'];
   filteredCalibers = Array<string>();
-  manufacturers = Array<ManufacturerOutput>();
+  manufacturers: ManufacturerOutput[] = this.route.snapshot.data.manufacturers;
+  calibers = this.route.snapshot.data.calibers;
 
   weaponForm = this.fb.group({
+    price: this.fb.control(null, Validators.required),
     title: this.fb.control(null, Validators.required),
-    country: this.fb.control(null, Validators.required),
-    manufacturer: this.fb.control(null, Validators.required),
-    weaponType: this.fb.control(null, Validators.required),
+    manufacturerId: this.fb.control(null, Validators.required),
+    type: this.fb.control(null, Validators.required),
     length: this.fb.control(null, Validators.required),
     weight: this.fb.control(null, Validators.required),
     capacity: this.fb.control(null),
     caliber: this.fb.control(null),
     bulletSpeed: this.fb.control(null),
-    images: this.fb.control([]),
+    // images: this.fb.control([])
   });
 
   fileList: UploadFile[] = [];
@@ -39,13 +38,7 @@ export class WeaponCreateComponent implements OnInit {
   ) { }
 
   ngOnInit(): void {
-    this.route.data.subscribe(data => this.manufacturers = data.manufacturers);
-
-    this.weaponForm.controls.manufacturer.valueChanges.subscribe(data => {
-      const manufacturer = this.manufacturers.find(item => item.id === data);
-
-      this.weaponForm.controls.country.setValue(manufacturer.country);
-    });
+    // this.route.data.subscribe(data => this.manufacturers = data.manufacturers);
   }
 
   onChange(value: string): void {
@@ -53,12 +46,12 @@ export class WeaponCreateComponent implements OnInit {
   }
 
   saveGun(): void {
-    this.weaponForm.controls.images.setValue(this.fileList.map(file => file.thumbUrl));
+    // this.weaponForm.controls.images.setValue(this.fileList.map(file => file.thumbUrl));
 
-    // this.weaponsService.createWeapon(this.weaponForm.value)
-    //   .subscribe(data => console.log(data));
+    this.weaponsService.createWeapon(this.weaponForm.value)
+      .subscribe(data => console.log(data));
 
-    console.log(this.weaponForm.controls.images.value);
+    // console.log(this.weaponForm.value);
   }
 
 }

@@ -27,7 +27,7 @@
       </li>
       <li nz-submenu nzTitle="Производитель">
         <nz-checkbox-group [(ngModel)]="manufacturers"
-                           (ngModelChange)="toggleTypes($event, 'manufacturers')"
+                           (ngModelChange)="toggleTypes($event, 'manufacturerIds')"
                            [ngModelOptions]="{ standalone: true }"
                            class="checkboxes-grid">
         </nz-checkbox-group>
