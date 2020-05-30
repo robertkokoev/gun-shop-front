@@ -3,7 +3,10 @@ import { HttpClient } from '@angular/common/http';
 import { Observable } from 'rxjs';
 import { API_URL } from '../../../../environments/environment';
 
-export type Caliber = { title: string };
+export interface Caliber {
+  id: number;
+  title: string;
+}
 
 @Injectable({ providedIn: 'root' })
 export class CalibersService {

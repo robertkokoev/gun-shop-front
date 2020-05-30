@@ -4,6 +4,7 @@ import { WeaponsService } from '../../shared/services/weapons.service';
 import { UploadFile } from 'ng-zorro-antd';
 import { ActivatedRoute } from '@angular/router';
 import { ManufacturerOutput } from '../../shared/services/manufacturers.service';
+import { Caliber } from '../../shared/services/calibers.service';
 
 @Component({
   selector: 'app-weapon-create',
@@ -14,7 +15,7 @@ export class WeaponCreateComponent implements OnInit {
 
   filteredCalibers = Array<string>();
   manufacturers: ManufacturerOutput[] = this.route.snapshot.data.manufacturers;
-  calibers = this.route.snapshot.data.calibers;
+  calibers: Caliber[] = this.route.snapshot.data.calibers;
 
   weaponForm = this.fb.group({
     price: this.fb.control(null, Validators.required),
@@ -42,7 +43,9 @@ export class WeaponCreateComponent implements OnInit {
   }
 
   onChange(value: string): void {
-    this.filteredCalibers = this.calibers.filter(option => option.toLowerCase().indexOf(value.toLowerCase()) !== -1);
+    this.filteredCalibers = this.calibers
+      .filter(option => option.title.toLowerCase().indexOf(value.toLowerCase()) !== -1)
+      .map(item => item.title);
   }
 
   saveGun(): void {
