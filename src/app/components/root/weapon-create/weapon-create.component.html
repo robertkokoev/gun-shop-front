@@ -1,5 +1,5 @@
 <h2 style="text-align: center">Добавление нового оружия</h2>
-<form [formGroup]="weaponForm" (ngSubmit)="saveGun()" class="form-grid" nz-form>
+<form [formGroup]="weaponForm" class="form-grid" nz-form>
   <nz-form-item>
     <nz-form-label [nzSm]="6" [nzXs]="24" nzRequired nzFor="title">Название</nz-form-label>
     <nz-form-control [nzSm]="14" [nzXs]="24" nzErrorTip="Название оружия обязательно">
@@ -105,22 +105,21 @@
     </div>
   </div>
 
-<!--  <div class="whole-length justify-center">-->
-<!--    <h3>Фото</h3>-->
-<!--    <nz-upload nzAction="https://www.mocky.io/v2/5cc8019d300000980a055e76"-->
-<!--               [(nzFileList)]="fileList"-->
-<!--               nzFileType="image/png"-->
-<!--               nzListType="picture"-->
-<!--               nzMultiple>-->
-<!--      <button nz-button nzType="primary" nzSize="large">-->
-<!--        <i nz-icon nzType="plus"></i>-->
-<!--        Добавить (.png)-->
-<!--      </button>-->
-<!--    </nz-upload>-->
-<!--  </div>-->
+  <div class="whole-length justify-center">
+    <h3>Фото</h3>
+    <nz-upload nzAction="https://www.mocky.io/v2/5185415ba171ea3a00704eed"
+               [(nzFileList)]="fileList"
+               nzFileType="image/png"
+               nzListType="picture">
+      <button nz-button nzSize="large">
+        <i nz-icon nzType="plus"></i>
+        Добавить (.png)
+      </button>
+    </nz-upload>
+  </div>
 
   <div class="whole-length save-button">
-    <button nzSize="large" type="submit" nz-button nzType="primary">
+    <button (click)="saveGun()" nz-button nzSize="large">
       <i nz-icon nzType="save"></i>
       Сохранить
     </button>

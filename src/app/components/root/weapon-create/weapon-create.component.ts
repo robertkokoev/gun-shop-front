@@ -27,10 +27,10 @@ export class WeaponCreateComponent implements OnInit {
     capacity: this.fb.control(null),
     caliber: this.fb.control(null),
     bulletSpeed: this.fb.control(null),
-    // images: this.fb.control([])
+    images: this.fb.control(null)
   });
 
-  fileList: UploadFile[] = [];
+  fileList = Array<UploadFile>();
 
   constructor(
     private fb: FormBuilder,
@@ -39,7 +39,6 @@ export class WeaponCreateComponent implements OnInit {
   ) { }
 
   ngOnInit(): void {
-    // this.route.data.subscribe(data => this.manufacturers = data.manufacturers);
   }
 
   onChange(value: string): void {
@@ -49,12 +48,12 @@ export class WeaponCreateComponent implements OnInit {
   }
 
   saveGun(): void {
-    // this.weaponForm.controls.images.setValue(this.fileList.map(file => file.thumbUrl));
+    this.weaponForm.controls.images.setValue(this.fileList.map(file => file.thumbUrl).toString());
 
     this.weaponsService.createWeapon(this.weaponForm.value)
       .subscribe(data => console.log(data));
 
-    // console.log(this.weaponForm.value);
+    console.log(this.weaponForm.value);
   }
 
 }

@@ -17,6 +17,7 @@ export interface WeaponInput {
   capacity: number | null;
   caliber: string | null;
   bulletSpeed: number | null;
+  images: string;
 }
 
 export interface Filter {
@@ -30,8 +31,8 @@ export class WeaponsService {
 
   constructor(private http: HttpClient) { }
 
-  createWeapon(weapon: WeaponInput): Observable<any> {
-    return this.http.post(`${API_URL}/api/weapons`, weapon);
+  createWeapon(weapon: WeaponInput): Observable<WeaponOutput> {
+    return this.http.post<WeaponOutput>(`${API_URL}/api/weapons`, weapon);
   }
 
   getAllWeapons(filter?: Filter): Observable<WeaponOutput[]> {

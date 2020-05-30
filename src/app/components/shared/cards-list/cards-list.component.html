@@ -1,7 +1,7 @@
 <div *ngFor="let item of items" class="card">
   <div class="title">{{ item.title }}</div>
 
-  <img class="image" src="https://avatars.mds.yandex.net/get-pdb/1639477/8f98d89b-a330-4abd-ab10-b2e4b67764f9/s1200?webp=false">
+  <img class="image" [src]="item.images">
   <div class="type">{{ item.type }}</div>
 
   <div class="info">
