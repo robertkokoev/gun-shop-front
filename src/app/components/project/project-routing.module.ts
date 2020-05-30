@@ -6,6 +6,7 @@ import { Observable } from 'rxjs';
 import { CatalogComponent } from './catalog/catalog.component';
 import { AllManufacturersResolver } from '../root/root-routing.module';
 import { AboutComponent } from './about/about.component';
+import { CartComponent } from './cart/cart.component';
 
 @Injectable({ providedIn: 'root' })
 export class AllWeaponsResolver implements Resolve<WeaponOutput[]> {
@@ -42,6 +43,10 @@ const routes: Routes = [
   {
     path: 'about',
     component: AboutComponent
+  },
+  {
+    path: 'cart',
+    component: CartComponent
   }
 ];
 

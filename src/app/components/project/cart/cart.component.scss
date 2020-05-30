@@ -1,0 +1,89 @@
+:host ::ng-deep {
+  .ant-form-item {
+    margin: 0;
+  }
+}
+
+.main-grid {
+  display: grid;
+  grid-template-columns: 3fr 1fr;
+  grid-gap: 20px;
+}
+
+.cart-list {
+  display: grid;
+  grid-gap: 20px;
+}
+
+.cart-item {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  justify-content: center;
+  align-items: center;
+  padding-bottom: 20px;
+  border-bottom: 2px solid white;
+}
+
+.img {
+  text-align: center;
+  color: white;
+  font-weight: 500;
+
+  img {
+    width: 100%;
+  }
+}
+
+.coupon {
+  display: grid;
+  justify-items: center;
+  grid-gap: 14px;
+  padding: 1rem;
+  background-color: black;
+  color: white;
+  font-size: 18px;
+  border-radius: 20px;
+  max-width: 350px;
+  max-height: 260px;
+  position: sticky;
+  top: 20px;
+}
+
+.title {
+  border-bottom: 1px solid white;
+  text-align: center;
+  width: 100%;
+}
+
+.input {
+  width: 100%;
+  text-align: center;
+}
+
+.price {
+  font-size: 30px;
+  text-align: center;
+  font-weight: 700;
+}
+
+.count {
+  display: grid;
+  grid-auto-flow: column;
+  width: 200px;
+  justify-self: center;
+
+  input {
+    text-align: center;
+    border-radius: 0;
+  }
+
+  .nz-form-item {
+    max-width: 50px;
+  }
+}
+
+input::-webkit-outer-spin-button,
+input::-webkit-inner-spin-button {
+  -webkit-appearance: none;
+  margin: 0;
+}

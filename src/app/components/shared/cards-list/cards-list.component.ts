@@ -15,4 +15,18 @@ export class CardsListComponent implements OnInit {
   ngOnInit(): void {
   }
 
+  addToCart(item: WeaponOutput): void {
+    let items = Array<WeaponOutput>();
+
+    const itemsString = localStorage.getItem('cartItems');
+
+    if (itemsString) {
+      items = JSON.parse(itemsString) as WeaponOutput[];
+    }
+
+    items.push(item);
+
+    const str = JSON.stringify(items);
+    localStorage.setItem('cartItems', str);
+  }
 }

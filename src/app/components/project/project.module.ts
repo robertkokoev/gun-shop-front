@@ -7,9 +7,10 @@ import { CatalogComponent } from './catalog/catalog.component';
 import { SharedModule } from '../shared/shared.module';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { AboutComponent } from './about/about.component';
+import { CartComponent } from './cart/cart.component';
 
 @NgModule({
-  declarations: [MainPageComponent, CatalogComponent, AboutComponent],
+  declarations: [MainPageComponent, CatalogComponent, AboutComponent, CartComponent],
   exports: [],
   imports: [
     ProjectRoutingModule,

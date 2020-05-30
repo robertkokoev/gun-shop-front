@@ -1,0 +1,43 @@
+<app-title>Корзина</app-title>
+<div class="main-grid">
+  <div class="cart-list">
+    <div *ngFor="let item of items" class="cart-item">
+      <div class="img">
+        <img src="https://avatars.mds.yandex.net/get-pdb/1639477/8f98d89b-a330-4abd-ab10-b2e4b67764f9/s1200?webp=false">
+        <span>{{ item.title }}</span>
+      </div>
+      <div class="price">{{ item.price }}$</div>
+      <div class="count">
+        <nz-button-group class="count">
+          <button nz-button (click)="minus(count)">-</button>
+          <nz-form-item>
+            <nz-input-group>
+              <nz-form-control>
+                <input #count [value]="1" nz-input min="0" type="number">
+              </nz-form-control>
+            </nz-input-group>
+          </nz-form-item>
+          <button nz-button (click)="count.value = (+count.value + 1).toString()">+</button>
+        </nz-button-group>
+      </div>
+      <div class="total price">{{ +count.value * item.price }}$</div>
+    </div>
+  </div>
+
+  <div class="coupon">
+    <div class="title">Итого</div>
+
+    <div class="input">
+      <span>Есть купон? Введите</span>
+      <nz-form-item>
+        <nz-form-control>
+          <input nz-input placeholder="Купон">
+        </nz-form-control>
+      </nz-form-item>
+    </div>
+
+    <div class="price">1010$</div>
+
+    <button nz-button nzSize="large">Оформить</button>
+  </div>
+</div>
