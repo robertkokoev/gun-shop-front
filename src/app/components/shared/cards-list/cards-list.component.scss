@@ -6,7 +6,6 @@
 
 .card {
   display: grid;
-  justify-items: center;
   grid-gap: 14px;
   padding: 1rem;
   background-color: black;
@@ -23,8 +22,14 @@
 }
 
 .image {
+  display: grid;
+  justify-content: center;
+  align-items: center;
   height: 200px;
-  max-width: 100%;
+
+  img {
+    max-width: 100%;
+  }
 }
 
 .type {

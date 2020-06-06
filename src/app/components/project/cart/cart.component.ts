@@ -28,4 +28,12 @@ export class CartComponent implements OnInit {
 
     count.value = (+count.value - 1).toString();
   }
+
+  removeFromCart(id: number): void {
+    const newItems = this.items.filter(i => i.id !== id);
+    this._items = [...newItems];
+
+    localStorage.setItem('cartItems', JSON.stringify(newItems));
+  }
+
 }

@@ -17,8 +17,8 @@
 
 .cart-item {
   display: grid;
-  grid-template-columns: repeat(4, 1fr);
-  justify-content: center;
+  grid-template-columns: repeat(5, 1fr);
+  justify-items: center;
   align-items: center;
   padding-bottom: 20px;
   border-bottom: 2px solid white;

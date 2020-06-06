@@ -6,7 +6,9 @@
         <img [src]="item.images">
         <span>{{ item.title }}</span>
       </div>
+
       <div class="price">{{ item.price }}$</div>
+
       <div class="count">
         <nz-button-group class="count">
           <button nz-button (click)="minus(count)">-</button>
@@ -20,7 +22,12 @@
           <button nz-button (click)="count.value = (+count.value + 1).toString()">+</button>
         </nz-button-group>
       </div>
+
       <div class="total price">{{ +count.value * item.price }}$</div>
+
+      <a nz-button nzType="danger" (click)="removeFromCart(item.id)">
+        <i nz-icon type="close"></i>
+      </a>
     </div>
   </div>
 

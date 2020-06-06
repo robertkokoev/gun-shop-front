@@ -1,5 +1,6 @@
 import { Component, Input, OnInit } from '@angular/core';
 import { WeaponWithManufacturer } from '../services/weapons.service';
+import { NzMessageService } from 'ng-zorro-antd';
 
 @Component({
   selector: 'app-cards-list',
@@ -10,7 +11,7 @@ export class CardsListComponent implements OnInit {
 
   @Input() items = Array<WeaponWithManufacturer>();
 
-  constructor() { }
+  constructor(private message: NzMessageService) { }
 
   ngOnInit(): void {
   }
@@ -24,9 +25,16 @@ export class CardsListComponent implements OnInit {
       items = JSON.parse(itemsString) as WeaponWithManufacturer[];
     }
 
+    if (items.some(i => i.id === item.id)) {
+      this.message.warning('Данный товар уже добавлен в корзину ранее');
+      return;
+    }
+
     items.push(item);
 
     const str = JSON.stringify(items);
     localStorage.setItem('cartItems', str);
+
+    this.message.success('Товар добавлен в корзину');
   }
 }
