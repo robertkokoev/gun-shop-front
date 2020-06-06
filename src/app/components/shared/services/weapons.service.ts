@@ -58,12 +58,16 @@ export class WeaponsService {
 
   getAllWeapons(filter?: Filter): Observable<WeaponOutput[]> {
     let types = '';
+    let manufacturer = '';
 
     if (filter) {
       types = 'type=' + filter.types.join('-');
+
+      manufacturer = 'manufacturer=' + filter.manufacturerIds.join('-');
     }
 
-    return this.http.get<WeaponOutput[]>(`${API_URL}/api/weapons?${types}`);
+    const query = `${API_URL}/api/weapons?${types}&${manufacturer}&priceFrom=${filter && filter.price.minPrice}&priceTo=${filter && filter.price.maxPrice}`;
+    return this.http.get<WeaponOutput[]>(query);
   }
 
   getWeaponsWithManufacturers(filter?: Filter): Observable<WeaponWithManufacturer[]> {
