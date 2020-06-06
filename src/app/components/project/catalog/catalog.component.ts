@@ -1,8 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { FormBuilder, FormGroup } from '@angular/forms';
-import { WeaponOutput, WeaponsService } from '../../shared/services/weapons.service';
+import { WeaponsService, WeaponWithManufacturer } from '../../shared/services/weapons.service';
 import { Observable } from 'rxjs';
-import { delay } from 'rxjs/operators';
 import { ActivatedRoute } from '@angular/router';
 
 interface CheckboxItem {
@@ -37,7 +36,7 @@ export class CatalogComponent implements OnInit {
     { value: 'sword', label: 'Меч' },
     { value: 'axe', label: 'Топор' },
   ];
-  private _weapons$ = this.weaponsService.getAllWeapons().pipe(delay(5000));
+  private _weapons$ = this.weaponsService.getWeaponsWithManufacturers();
   private _manufacturers = Array<CheckboxItem>();
 
   get filterForm(): FormGroup {
@@ -52,7 +51,7 @@ export class CatalogComponent implements OnInit {
     this._types = value;
   }
 
-  get weapons$(): Observable<WeaponOutput[]> {
+  get weapons$(): Observable<WeaponWithManufacturer[]> {
     return this._weapons$;
   }
 
@@ -84,7 +83,7 @@ export class CatalogComponent implements OnInit {
   }
 
   filter(): void {
-    this._weapons$ = this.weaponsService.getAllWeapons(this.filterForm.value);
+    this._weapons$ = this.weaponsService.getWeaponsWithManufacturers(this.filterForm.value);
     console.log(this.filterForm.value);
   }
 }

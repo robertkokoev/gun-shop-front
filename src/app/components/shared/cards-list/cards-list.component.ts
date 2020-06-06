@@ -1,5 +1,5 @@
 import { Component, Input, OnInit } from '@angular/core';
-import { WeaponOutput } from '../services/weapons.service';
+import { WeaponWithManufacturer } from '../services/weapons.service';
 
 @Component({
   selector: 'app-cards-list',
@@ -8,20 +8,20 @@ import { WeaponOutput } from '../services/weapons.service';
 })
 export class CardsListComponent implements OnInit {
 
-  @Input() items = Array<WeaponOutput>();
+  @Input() items = Array<WeaponWithManufacturer>();
 
   constructor() { }
 
   ngOnInit(): void {
   }
 
-  addToCart(item: WeaponOutput): void {
-    let items = Array<WeaponOutput>();
+  addToCart(item: WeaponWithManufacturer): void {
+    let items = Array<WeaponWithManufacturer>();
 
     const itemsString = localStorage.getItem('cartItems');
 
     if (itemsString) {
-      items = JSON.parse(itemsString) as WeaponOutput[];
+      items = JSON.parse(itemsString) as WeaponWithManufacturer[];
     }
 
     items.push(item);

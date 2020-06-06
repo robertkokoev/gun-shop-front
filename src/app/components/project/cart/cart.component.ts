@@ -8,14 +8,17 @@ import { WeaponOutput } from '../../shared/services/weapons.service';
 })
 export class CartComponent implements OnInit {
 
-  items = Array<WeaponOutput>();
-  // count = 1;
+  private _items = Array<WeaponOutput>();
+
+  get items(): WeaponOutput[] {
+    return this._items;
+  }
 
   constructor() { }
 
   ngOnInit(): void {
     const str = localStorage.getItem('cartItems');
-    this.items = JSON.parse(str);
+    this._items = JSON.parse(str);
   }
 
   minus(count: HTMLInputElement): void {

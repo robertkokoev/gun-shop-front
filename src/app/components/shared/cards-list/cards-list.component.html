@@ -2,13 +2,12 @@
   <div class="title">{{ item.title }}</div>
 
   <img class="image" [src]="item.images">
-  <div class="type">{{ item.type }}</div>
+  <div class="type">{{ item.type | label }}</div>
 
   <div class="info">
     Калибр: <span>{{ item.caliber }}</span> <br>
-    Страна: <span>{{ item.country }}</span> <br>
-    <!--      Производитель: {{ item.manufacturer }}-->
-    Производитель: <span>Концерн Калашникова</span>
+    Страна: <span>{{ item.manufacturer.country }}</span> <br>
+    Производитель: <span>{{ item.manufacturer.title }}</span>
     <div class="price">{{ item.price }}$</div>
   </div>
 

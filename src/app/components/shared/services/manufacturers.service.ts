@@ -4,7 +4,7 @@ import { Observable } from 'rxjs';
 import { API_URL } from '../../../../environments/environment';
 
 export interface ManufacturerOutput extends ManufacturerInput{
-  id: string;
+  id: number;
 }
 
 export interface ManufacturerInput {

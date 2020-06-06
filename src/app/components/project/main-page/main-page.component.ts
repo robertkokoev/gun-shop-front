@@ -1,6 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
-import { WeaponOutput } from '../../shared/services/weapons.service';
+import { WeaponWithManufacturer } from '../../shared/services/weapons.service';
 
 @Component({
   selector: 'app-main-page',
@@ -9,7 +9,7 @@ import { WeaponOutput } from '../../shared/services/weapons.service';
 })
 export class MainPageComponent implements OnInit {
 
-  weapons = Array<WeaponOutput>();
+  weapons = Array<WeaponWithManufacturer>();
 
   constructor(private route: ActivatedRoute) { }
 
