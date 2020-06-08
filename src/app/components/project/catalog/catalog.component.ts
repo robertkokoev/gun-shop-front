@@ -79,11 +79,9 @@ export class CatalogComponent implements OnInit {
     const checkedItems = items.filter(item => item.checked).map(item => item.value);
 
     this.filterForm.controls[controlName].setValue(checkedItems);
-    console.log(this.filterForm.controls[controlName].value);
   }
 
   filter(): void {
     this._weapons$ = this.weaponsService.getWeaponsWithManufacturers(this.filterForm.value);
-    console.log(this.filterForm.value);
   }
 }

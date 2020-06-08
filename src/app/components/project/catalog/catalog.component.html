@@ -37,6 +37,7 @@
       <button (click)="filter()" nzSize="large" nz-button>Применить фильтр</button>
     </div>
   </nz-sider>
+
   <nz-content>
     <app-cards-list class="cards" *ngIf="(weapons$ | async) as weapons else loader" [items]="weapons"></app-cards-list>
     <ng-template #loader>
@@ -45,5 +46,4 @@
       </div>
     </ng-template>
   </nz-content>
-
 </nz-layout>

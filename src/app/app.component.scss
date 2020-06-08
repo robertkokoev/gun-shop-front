@@ -9,8 +9,13 @@ nz-layout {
 }
 
 nz-header,
-nz-content {
+nz-content,
+nz-footer {
   padding: 0 200px;
+}
+
+nz-content {
+  padding-bottom: 50px;
 }
 
 nz-header {
@@ -20,14 +25,6 @@ nz-header {
 [nz-menu] {
   line-height: 80px;
   font-size: 20px;
-}
-
-.ant-layout-header {
-  //background: black !important;
-}
-
-.ant-menu-dark {
-  //background: black !important;
 }
 
 .header-grid {
@@ -58,4 +55,27 @@ nz-header {
       color: white;
     }
   }
+}
+
+.footer-grid {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  grid-gap: 20px;
+  color: white;
+  padding: 30px 0;
+  font-size: 20px;
+
+  a {
+    color: #c2c2c2;
+
+    &:hover {
+      color: white;
+    }
+  }
+
+}
+
+.footer-logo {
+  width: 70%;
+  align-self: center;
 }

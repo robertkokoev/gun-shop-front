@@ -8,12 +8,12 @@
         <li nz-menu-item><a routerLink="about">О нас</a></li>
       </ul>
       <div class="login">
-        <a routerLink="cart">
-          <i nz-icon nzType="shopping-cart" nzTheme="outline" style="margin-right: 10px; font-size: 24px"></i>
-        </a>
+<!--        <a routerLink="cart">-->
+<!--          <i nz-icon nzType="shopping-cart" nzTheme="outline" style="margin-right: 10px; font-size: 24px"></i>-->
+<!--        </a>-->
         <a routerLink="/root/admin-panel">
-          Войти
-          <i nz-icon nzType="user"></i>
+          Корзина
+          <i nz-icon nzType="shopping-cart"></i>
         </a>
       </div>
     </div>
@@ -22,4 +22,28 @@
   <nz-content>
     <router-outlet></router-outlet>
   </nz-content>
+
+  <nz-footer>
+    <div class="footer-grid">
+      <img class="footer-logo" src="../assets/images/Logo.png" alt="">
+
+      <div>
+        Мы в соц. сетях: <br>
+        <a>Вконтакте</a> <br>
+        <a>Instagram</a> <br>
+        <a>Telegram</a>
+      </div>
+
+      <div>
+        Обратная связь: <br>
+        ares.gunshop@gmail.com
+      </div>
+
+      <div>
+        Адрес: <br>
+        г. Москва, <br>
+        ул. Моховая 1
+      </div>
+    </div>
+  </nz-footer>
 </nz-layout>
