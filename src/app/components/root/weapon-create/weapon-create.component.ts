@@ -1,5 +1,5 @@
-import { Component, OnInit } from '@angular/core';
-import { FormBuilder, Validators } from '@angular/forms';
+import { Component } from '@angular/core';
+import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { WeaponsService } from '../../shared/services/weapons.service';
 import { NzMessageService, UploadFile } from 'ng-zorro-antd';
 import { ActivatedRoute } from '@angular/router';
@@ -11,13 +11,13 @@ import { Caliber } from '../../shared/services/calibers.service';
   templateUrl: './weapon-create.component.html',
   styleUrls: ['./weapon-create.component.scss']
 })
-export class WeaponCreateComponent implements OnInit {
+export class WeaponCreateComponent {
 
-  filteredCalibers = Array<string>();
-  manufacturers: ManufacturerOutput[] = this.route.snapshot.data.manufacturers;
-  calibers: Caliber[] = this.route.snapshot.data.calibers;
-
-  weaponForm = this.fb.group({
+  private _filteredCalibers = Array<string>();
+  private _manufacturers: ManufacturerOutput[] = this.route.snapshot.data.manufacturers;
+  private _calibers: Caliber[] = this.route.snapshot.data.calibers;
+  private _file = Array<UploadFile>();
+  private _weaponForm = this.fb.group({
     price: this.fb.control(null, Validators.required),
     title: this.fb.control(null, Validators.required),
     manufacturerId: this.fb.control(null, Validators.required),
@@ -30,7 +30,29 @@ export class WeaponCreateComponent implements OnInit {
     images: this.fb.control(null)
   });
 
-  fileList = Array<UploadFile>();
+  get weaponForm(): FormGroup {
+    return this._weaponForm;
+  }
+
+  get calibers(): Caliber[] {
+    return this._calibers;
+  }
+
+  get manufacturers(): ManufacturerOutput[] {
+    return this._manufacturers;
+  }
+
+  get filteredCalibers(): string[] {
+    return this._filteredCalibers;
+  }
+
+  set file(value: UploadFile[]) {
+    this._file = value;
+  }
+
+  get file(): UploadFile[] {
+    return this._file;
+  }
 
   constructor(
     private fb: FormBuilder,
@@ -39,17 +61,14 @@ export class WeaponCreateComponent implements OnInit {
     private message: NzMessageService
   ) { }
 
-  ngOnInit(): void {
-  }
-
   onChange(value: string): void {
-    this.filteredCalibers = this.calibers
+    this._filteredCalibers = this.calibers
       .filter(option => option.title.toLowerCase().indexOf(value.toLowerCase()) !== -1)
       .map(item => item.title);
   }
 
   saveGun(): void {
-    this.weaponForm.controls.images.setValue(this.fileList.map(file => file.thumbUrl).toString());
+    this.weaponForm.controls.images.setValue(this.file.map(file => file.thumbUrl).toString());
 
     this.weaponsService.createWeapon(this.weaponForm.value)
       .subscribe(() => this.message.success('Товар добавлен'));

@@ -1,6 +1,6 @@
 <app-title>Корзина</app-title>
 <div class="main-grid">
-  <div class="cart-list">
+  <div class="cart-list" *ngIf="items.length else noData">
     <div *ngFor="let item of items" class="cart-item">
       <div class="img">
         <img [src]="item.images">
@@ -11,7 +11,7 @@
 
       <div class="count">
         <nz-button-group class="count">
-          <button nz-button (click)="minus(count)">-</button>
+          <button nz-button (click)="minus(count, item.price)">-</button>
           <nz-form-item>
             <nz-input-group>
               <nz-form-control>
@@ -19,13 +19,13 @@
               </nz-form-control>
             </nz-input-group>
           </nz-form-item>
-          <button nz-button (click)="count.value = (+count.value + 1).toString()">+</button>
+          <button nz-button (click)="plus(count, item.price)">+</button>
         </nz-button-group>
       </div>
 
       <div class="total price">{{ +count.value * item.price }}$</div>
 
-      <a nz-button nzType="danger" (click)="removeFromCart(item.id)">
+      <a nz-button nzType="danger" (click)="removeFromCart(item.id, +count.value, item.price)">
         <i nz-icon type="close"></i>
       </a>
     </div>
@@ -43,8 +43,12 @@
       </nz-form-item>
     </div>
 
-    <div class="price">6875$</div>
+    <div class="price">{{ totalPrice }}$</div>
 
     <button nz-button nzSize="large">Оформить</button>
   </div>
 </div>
+
+<ng-template #noData>
+  <h2 style="color: white">Не добавлено ни одного товара</h2>
+</ng-template>

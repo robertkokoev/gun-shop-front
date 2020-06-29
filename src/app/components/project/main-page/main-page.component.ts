@@ -9,14 +9,17 @@ import { WeaponWithManufacturer } from '../../shared/services/weapons.service';
 })
 export class MainPageComponent implements OnInit {
 
-  weapons = Array<WeaponWithManufacturer>();
+  private _weapons = Array<WeaponWithManufacturer>();
+
+  get weapons(): WeaponWithManufacturer[] {
+    return this._weapons;
+  }
 
   constructor(private route: ActivatedRoute) { }
 
   ngOnInit(): void {
     this.route.data.subscribe(data => {
-      this.weapons = data.weapons;
-      console.log(this.weapons);
+      this._weapons = data.weapons;
     });
   }
 

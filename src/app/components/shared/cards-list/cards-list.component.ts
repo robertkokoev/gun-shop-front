@@ -1,4 +1,4 @@
-import { Component, Input, OnInit } from '@angular/core';
+import { Component, Input } from '@angular/core';
 import { WeaponWithManufacturer } from '../services/weapons.service';
 import { NzMessageService } from 'ng-zorro-antd';
 
@@ -7,14 +7,11 @@ import { NzMessageService } from 'ng-zorro-antd';
   templateUrl: './cards-list.component.html',
   styleUrls: ['./cards-list.component.scss']
 })
-export class CardsListComponent implements OnInit {
+export class CardsListComponent {
 
   @Input() items = Array<WeaponWithManufacturer>();
 
   constructor(private message: NzMessageService) { }
-
-  ngOnInit(): void {
-  }
 
   addToCart(item: WeaponWithManufacturer): void {
     let items = Array<WeaponWithManufacturer>();
